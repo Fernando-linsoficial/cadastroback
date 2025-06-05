@@ -1,12 +1,20 @@
 package com.example.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
 @Entity 
-public class user {
-    public user(Long id, String nome, String email, String serie, String cpf, String imagemfacial) {
+@Table(name = "\"user\"")
+public class User {
+      public User() {
+        
+    }
+    public User(Long id, String nome, String email, String serie, String cpf, String imagemfacial) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -15,13 +23,16 @@ public class user {
         this.imagemfacial = imagemfacial;
     }
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String serie;
     private String cpf;
     @Lob
+    @Column(columnDefinition = "TEXT")
     private String imagemfacial;
+
     public Long getId() {
         return id;
     }
